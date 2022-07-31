@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+const TextStyle myTextStyle = TextStyle(
+    backgroundColor: Colors.red,
+    fontStyle: FontStyle.italic,
+    fontFamily: "arial",
+    fontSize: 20);
+
 class CounterScreen extends StatefulWidget {
   const CounterScreen({Key? key}) : super(key: key);
 
@@ -8,16 +14,9 @@ class CounterScreen extends StatefulWidget {
 }
 
 class _CounterScreenState extends State<CounterScreen> {
+  int count = 1;
   @override
   Widget build(BuildContext context) {
-    int count = 1;
-    // Aquí declaramos Variables
-    const TextStyle myTextStyle = TextStyle(
-        backgroundColor: Colors.red,
-        fontStyle: FontStyle.italic,
-        fontFamily: "arial",
-        fontSize: 20);
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Aña App counter $count'),
@@ -41,7 +40,10 @@ class _CounterScreenState extends State<CounterScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-          onPressed: () => count++,
+          onPressed: () {
+            count++;
+            setState(() {});
+          },
           tooltip: 'Increment Counter',
           // Icon es un widget especializado en mostrar Icons
           child: const Icon(Icons.add_alert_rounded)),
