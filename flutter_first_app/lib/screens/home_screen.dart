@@ -10,15 +10,15 @@ class HomeScreen extends StatelessWidget {
         title: Text('Aña App counter $_count'),
         elevation: 0,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        // crossAxisAlignment es relativo al widget que tiene mayor tamaño
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [
-          Text('first Aña'),
-          Text('second Aña'),
-          Text('third Aña'),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text('first Aña'),
+            Text('second Aña'),
+            Text('third Aña'),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => null,
