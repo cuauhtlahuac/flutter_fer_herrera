@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
   final int _count = 0;
+  final double _fontSize = 20;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,19 +14,19 @@ class HomeScreen extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Text(
               'first Aña',
               style: TextStyle(
                   backgroundColor: Colors.red,
                   fontStyle: FontStyle.italic,
                   fontFamily: "arial",
-                  fontSize: 20),
+                  fontSize: _fontSize),
             ),
-            Text('second Aña'),
+            const Text('second Aña'),
             Text(
               'third Aña',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: _fontSize),
             ),
           ],
         ),
