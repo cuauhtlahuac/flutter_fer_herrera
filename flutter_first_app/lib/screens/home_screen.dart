@@ -14,9 +14,19 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            Text('first Aña'),
+            Text(
+              'first Aña',
+              style: TextStyle(
+                  backgroundColor: Colors.red,
+                  fontStyle: FontStyle.italic,
+                  fontFamily: "arial",
+                  fontSize: 20),
+            ),
             Text('second Aña'),
-            Text('third Aña'),
+            Text(
+              'third Aña',
+              style: TextStyle(fontSize: 20),
+            ),
           ],
         ),
       ),
