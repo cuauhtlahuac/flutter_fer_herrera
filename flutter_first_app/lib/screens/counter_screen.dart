@@ -1,73 +1,102 @@
 import 'package:flutter/material.dart';
 
-TextStyle myTextStyle = const TextStyle(
-    fontStyle: FontStyle.italic, fontFamily: "arial", fontSize: 40);
 
 class CounterScreen extends StatefulWidget {
-  const CounterScreen({Key? key}) : super(key: key);
+  
+  const CounterScreen({ Key? key }) : super(key: key);
 
   @override
   State<CounterScreen> createState() => _CounterScreenState();
 }
 
 class _CounterScreenState extends State<CounterScreen> {
-  int count = 0;
+
+  int counter = 15;
+
+  void increase() {
+    counter++;
+    setState(() {});
+  }
+
+  void decrease() {
+    counter--;
+    setState(() {});
+  }
+
+  void reset() {
+    counter = 0;
+    setState(() {});
+  }
+
+
   @override
   Widget build(BuildContext context) {
+
+    const fontSize30 = TextStyle( fontSize: 30 );
+    
     return Scaffold(
       appBar: AppBar(
-        title: Text('Aña App counter $count'),
+        title: const Text('CounterScreen'),
         elevation: 0,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Number of Añas',
-              style: myTextStyle.merge(TextStyle(
-                  color: Colors.blue.shade300,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold)),
-            ),
-            Text(
-              '$count',
-              style: myTextStyle,
-            ),
+            const Text('Número de Clicks', style: fontSize30 ),
+            Text( '$counter', style: fontSize30 ),
           ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          FloatingActionButton(
-              onPressed: () {
-                count--;
-                setState(() {});
-              },
-              tooltip: 'Decrement Counter',
-              // Icon es un widget especializado en mostrar Icons
-              child: const Icon(Icons.remove)),
-          FloatingActionButton(
-            onPressed: (() {
-              setState(() {
-                count = 0;
-              });
-            }),
-            child: Icon(Icons.restart_alt_outlined),
-          ),
-          FloatingActionButton(
-              onPressed: () {
-                count++;
-                setState(() {});
-              },
-              tooltip: 'Increment Counter',
-              // Icon es un widget especializado en mostrar Icons
-              child: const Icon(Icons.add)),
-        ],
+      floatingActionButton: CustomFloatingActions(
+        increaseFn: increase,
+        decreaseFn: decrease,
+        resetFn: reset
       ),
+    );
+  }
+}
+
+
+
+class CustomFloatingActions extends StatelessWidget {
+
+  final Function increaseFn;
+  final Function decreaseFn;
+  final Function resetFn;
+
+  const CustomFloatingActions({
+    Key? key, 
+    required this.increaseFn, 
+    required this.decreaseFn, 
+    required this.resetFn,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children:  [
+
+        FloatingActionButton(
+          child: const Icon( Icons.exposure_plus_1_outlined ),
+          onPressed: () => increaseFn(),
+        ),
+        
+
+        FloatingActionButton(
+            child: const Icon( Icons.exposure_outlined ),
+            onPressed: () {
+               resetFn();
+            },
+          ),
+
+        FloatingActionButton(
+          child: const Icon( Icons.exposure_minus_1_outlined ),
+          onPressed: () => decreaseFn(),
+        ),
+      ],
     );
   }
 }
