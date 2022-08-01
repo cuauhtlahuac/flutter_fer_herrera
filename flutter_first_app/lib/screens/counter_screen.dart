@@ -39,7 +39,7 @@ class _CounterScreenState extends State<CounterScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           FloatingActionButton(
@@ -50,8 +50,13 @@ class _CounterScreenState extends State<CounterScreen> {
               tooltip: 'Decrement Counter',
               // Icon es un widget especializado en mostrar Icons
               child: const Icon(Icons.remove)),
-          const SizedBox(
-            width: 20,
+          FloatingActionButton(
+            onPressed: (() {
+              setState(() {
+                count = 0;
+              });
+            }),
+            child: Icon(Icons.restart_alt_outlined),
           ),
           FloatingActionButton(
               onPressed: () {
